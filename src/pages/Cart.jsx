@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Trash2, MapPin } from "lucide-react";
 import {getCart, removeCartItem, addToCart} from "../api/cartAPI";
+import { API_URL} from "../../config.js";
 
 const Cart = ({ setCartCount }) => {
 
@@ -98,7 +99,7 @@ const Cart = ({ setCartCount }) => {
     address,
   };
   try{
-  const res = await fetch("http://localhost:5000/api/orders", {
+  const res = await fetch(`${API_URL}/api/orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -147,7 +148,7 @@ const Cart = ({ setCartCount }) => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/payments/create-order", {
+      const response = await fetch(`${API_URL}/api/payments/create-order`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: total }),
@@ -162,7 +163,7 @@ const Cart = ({ setCartCount }) => {
         description: "Payment for your artworks",
         order_id: order.id,
         handler: async function (response) {
-          const verifyRes = await fetch("http://localhost:5000/api/payments/verify", {
+          const verifyRes = await fetch(`${API_URL}/api/payments/verify`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -177,7 +178,7 @@ const Cart = ({ setCartCount }) => {
             const user = JSON.parse(localStorage.getItem("user"));
             const userId = user?.id;
 
-            await fetch("http://localhost:5000/api/orders", {
+            await fetch(`${API_URL}/api/orders`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

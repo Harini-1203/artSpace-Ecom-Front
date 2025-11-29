@@ -5,8 +5,9 @@ import axios from "axios";
 import { FaHeart, FaShareAlt } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import { addToCart,getCart } from "../api/cartAPI";
+import { API_URL } from "../../config.js";
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = `${API_URL}/api`;
 
 export default function ProductDetail() {
   const { id } = useParams();

@@ -2,6 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useReactToPrint } from "react-to-print";
+import { API_URL } from "../../config.js";
+
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -9,7 +11,7 @@ const OrderDetails = () => {
   const printRef = useRef();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/admin/orders/${id}`).then(res => {
+    axios.get(`${API_URL}/api/admin/orders/${id}`).then(res => {
         setOrder(res.data.order)
     });
     

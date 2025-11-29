@@ -4,6 +4,8 @@ import axios from "axios";
 import Sidebar from "./Sidebar";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-hot-toast";
+import { API_URL } from "../../config.js";
+
 
 const Products = () => {
   const [products, setProducts] = useState([]);

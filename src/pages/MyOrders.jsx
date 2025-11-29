@@ -10,6 +10,8 @@ import {
   XCircle,
   RefreshCw,
 } from "lucide-react";
+import { API_URL } from "../../config.js";
+
 
 const MyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -42,7 +44,7 @@ const MyOrders = () => {
     if (!confirmCancel) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/orders/${id}/cancel`, {
+      const res = await fetch(`${API_URL}/api/orders/${id}/cancel`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

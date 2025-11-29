@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+import { API_URL } from "../../config.js";
+
 export default function AddProduct() {
   const [formData, setFormData] = useState({
     name: "",
@@ -76,7 +78,7 @@ export default function AddProduct() {
     images.forEach((img) => data.append("images", img));
 
     try {
-      await axios.post("http://localhost:5000/api/products", data, {
+      await axios.post(`${API_URL}api/products`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { API_URL } from "../../config.js";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ export default function ForgotPassword() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/users/forgot-password", { email });
+      const res = await axios.post(`${API_URL}/api/users/forgot-password`, { email });
       setMessage(res.data.message);
     } catch (err) {
       setMessage(err.response?.data?.error || "Error sending reset link");

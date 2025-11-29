@@ -2,6 +2,7 @@ import React, { useEffect, useState  } from "react";
 import axios from "axios";
 import ProductCard from "../components/landing/ProductCard";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../../config.js";
 
 export default function WishlistPage() {
   const [wishlistProducts, setWishlistProducts] = useState([]);
@@ -12,7 +13,7 @@ export default function WishlistPage() {
   useEffect(() => {
     if (!token) return;
     axios
-      .get("http://localhost:5000/api/users/wishlist", {
+      .get(`${API_URL}/api/users/wishlist`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -33,7 +34,7 @@ export default function WishlistPage() {
     }
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/users/wishlist/${productId}`,
+        `${API_URL}/api/users/wishlist/${productId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

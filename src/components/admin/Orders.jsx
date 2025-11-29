@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../../config.js";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -9,13 +10,13 @@ const Orders = () => {
   }, []);
 
   const fetchOrders = async () => {
-    const { data } = await axios.get("http://localhost:5000/api/admin/orders");
+    const { data } = await axios.get(`${API_URL}/api/admin/orders`);
     setOrders(data.orders);
   };
 
   const handleStatusChange = async (id, status) => {
-    await axios.patch(`http://localhost:5000/api/admin/orders/${id}/status`, { orderStatus: status });
-    fetchOrders(); // Refresh table
+    await axios.patch(`${API_URL}/api/admin/orders/${id}/status`, { orderStatus: status });
+    fetchOrders(); // Refresh table`${API_URL}
   };
 
   return (
