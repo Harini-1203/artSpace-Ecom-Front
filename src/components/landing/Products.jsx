@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductCard from "./ProductCard";
+import { API_URL } from "../../config.js";
 
 export const Products = ({ onCartChange }) => {
   const [cart, setCart] = useState([]);
@@ -14,7 +15,7 @@ export const Products = ({ onCartChange }) => {
   // Fetch products
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products", { withCredentials: true } )
+      .get(`${API_URL}/api/products`, { withCredentials: true } )
       .then((res) => setProducts(res.data))
       .catch((err) => console.error("Error fetching products:", err));
   }, []);

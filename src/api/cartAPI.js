@@ -1,13 +1,13 @@
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
+import { API_URL } from "../../config.js";
 
-const API_BASE_URL = import.meta.env.API_BASE_URL || "http://localhost:5000";
-
+const API_BASE_URL = API_URL;
 export const getCart = async () => {
   const token = localStorage.getItem("token");
   
-  const res = await fetch("http://localhost:5000/api/cart", {
+  const res = await fetch(`${API_BASE_URL}/api/cart`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export const getCart = async () => {
 export const addToCart = async (productId, qty = 1) => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch(`http://localhost:5000/api/cart/add/${productId}`, {
+  const res = await fetch(`${API_BASE_URL}/api/cart/add/${productId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
